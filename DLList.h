@@ -12,18 +12,18 @@ class Node {
 		Node* prev;
 };
 
-class DLinked {
+class DLList {
 	private:
 		Node* head;
 		Node* tail;
 	public: 
-		DLinked();
-		void insertH(Node*);
-		void insertT(Node*);
-		void delH();
-		void delT();
+		DLList();
+		void insertHead(Node*);
+		void insertTail(Node*);
+		void delHead();
+		void delTail();
 		void traverse();
-		~DLinked();
+		~DLList();
 };
 
 

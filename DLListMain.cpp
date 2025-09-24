@@ -32,20 +32,20 @@ int main() {
 				x = new Node;
 				x->data = item;
 				x->next = nullptr;
-				x->prev = head;
-				DL->insertH(x);
+				x->prev = nullptr;
+				DL->insertHead(x);
 				break;
 			case 2: cout << "Enter data item (integer) to be inserted at the tail: ";
 				cin >> item;
 				x = new Node;
 				x->data = item;
-				x->next = ;
-				x->prev = ;
-				DL->insertT(x);
+				x->next = nullptr;
+				x->prev = nullptr;
+				DL->insertTail(x);
 				break;
-			case 3: DL->delH();
+			case 3: DL->delHead();
 				break;
-			case 4: DL->delT();
+			case 4: DL->delTail();
 				break;
 			case 5:
 				DL->traverse();

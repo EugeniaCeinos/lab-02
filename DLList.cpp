@@ -8,33 +8,65 @@ DLList::DLList() {
 	tail = nullptr;
 }
 
-void DLList::insertH(Node* x) {
-	x->next = head;
-	head->prev = x;
-	head = x;
-}
-
-void DLList::insertT(Node* x) {
-	tail->next = x;
-	x->prev = tail;
-        tail = x;	
-}
-
-void DLList::delH() {
+void DLList::insertHead(Node* x) {
 	if (head == nullptr) {
-		cout << "The Doubly-Linked List is empty" << endl;
+		head = tail = x;  // head and tail are pointers so they store the address of x
+		x->prev = nullptr;
+		x->next = nullptr;
 	}
 	else {
-		Node* temp = head;
-		head = head->next;
-		delete temp;
+		x->next = head;
+		x->prev = nullptr;
+		head->prev = x;   // old head(node) points to the current head, because head holds the address of the old head
+		head = x;   // update head
 	}
 }
 
-void DLList::delT() {
+void DLList::insertTail(Node* x) {
 	if (tail == nullptr) {
-		cout << "There's no tail in this Doubly-Linked List" << endl;
+		head = tail = x;  // if the list is empty just add the new node, which head and tail will be pointing to
+		x->next = nullptr;
+		x->prev = nullptr;
+	}	
+	else {
+		x->next = nullptr;
+		x->prev = tail;
+		tail->next = x; // old tail which is the address of the last node will now point to the new tail, which is the node x just added.
+		tail = x;
 	}
+}
+
+void DLList::delHead() {
+	if (head == nullptr) {
+		cout << "The Doubly-Linked List is empty" << endl;
+		return;
+	}
+	Node* temp = head; // outside if statement so in both cases temp is deleted afterwards.
+	if (head == tail) {
+		head = tail = nullptr;
+	}
+	else {
+		head = head->next;  // update head to next in line.
+		head->prev = nullptr;
+	}
+	delete temp;
+}
+
+void DLList::delTail() {
+	if (tail == nullptr) {
+		cout << "The Doubly-Linked List is empty" << endl;
+		return;
+	}
+	Node* temp = tail;
+	if (head == tail) {
+		head = tail = nullptr;
+	}
+	else {
+		tail = tail->prev;
+		tail->next = nullptr;
+
+	}
+	delete temp;
 }
 
 void DLList::traverse() {
